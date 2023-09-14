@@ -4,6 +4,9 @@ import tkinter as tk
 root = tk.Tk()
 root.title("Change Calculator")
 
+# Initialize the change dictionary
+change = {10: 4, 20: 3, 50: 5, 100: 2, 200: 3, 500: 6, 1000: 1, 0: 0}
+
 # Function to calculate change
 def calculate_change():
     user_input = int(change_entry.get())
@@ -22,7 +25,7 @@ def calculate_change():
                 change[0] += 1
 
     if remaining == 0:
-        result_label.config(text=f"Your change: {user_input}\nYour wallet: {change}")
+        result_label.config(text=f"Your change: {user_input}\nChange given: {change_given}\nYour wallet: {change}")
     else:
         result_label.config(text=f"Sorry, unable to provide exact change. Remaining: {remaining}")
 
