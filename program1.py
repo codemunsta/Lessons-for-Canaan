@@ -1,9 +1,12 @@
-change = {10: 4, 20: 3, 50: 5, 100: 2, 200: 3, 500: 6, 1000: 1, 0: 0}
+import tkinter as tk
 
+# Initialize the Tkinter window
+root = tk.Tk()
+root.title("Change Calculator")
 
-while True:
-    user_input = int(input("Enter Change You want to get:\n"))
-
+# Function to calculate change
+def calculate_change():
+    user_input = int(change_entry.get())
     remaining = user_input
     change_given = {}
 
@@ -19,13 +22,25 @@ while True:
                 change[0] += 1
 
     if remaining == 0:
-        print("Your change:", user_input)
-        print("Your wallet:", change)
+        result_label.config(text=f"Your change: {user_input}\nYour wallet: {change}")
     else:
-        print("Sorry, unable to provide exact change. Remaining:", remaining)
+        result_label.config(text=f"Sorry, unable to provide exact change. Remaining: {remaining}")
 
     if change[0] == 7:
-        print("Sorry the change basket has finished")
-        break
-    else:
-        continue
+        result_label.config(text="Sorry, the change basket has finished")
+
+# GUI components
+change_label = tk.Label(root, text="Enter Change You Want to Get:")
+change_label.pack()
+
+change_entry = tk.Entry(root)
+change_entry.pack()
+
+calculate_button = tk.Button(root, text="Calculate Change", command=calculate_change)
+calculate_button.pack()
+
+result_label = tk.Label(root, text="")
+result_label.pack()
+
+# Run the Tkinter main loop
+root.mainloop()
